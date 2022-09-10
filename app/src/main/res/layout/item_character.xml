@@ -2,10 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:foreground="?selectableItemBackground"
     android:padding="10dp"
+    android:layout_margin="10dp"
     app:cardCornerRadius="15dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -20,8 +21,8 @@
 
         <ImageView
             android:id="@+id/character_img"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
             app:layout_constraintBottom_toTopOf="@id/character_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
