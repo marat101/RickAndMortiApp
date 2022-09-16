@@ -8,7 +8,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var vm: MainViewModel
     private lateinit var mainContainer: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         ).commit()
 
         // 1+1=3
-        vm = ViewModelProvider(this)[MainViewModel::class.java]
 
     }
 }

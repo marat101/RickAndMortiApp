@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.marat.retrofittest.adapter.RikAdapter
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
+import com.marat.retrofittest.detaillistfragment.DetailListFragment
 
 class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
     private lateinit var binding: FragmentCharacterListBinding
-    private var adapter = RikAdapter()
+    private var adapter = RikAdapter(onClick = { clickOnItem(it) })
 
     companion object {
         fun newInstance() = CharacterListFragment()
@@ -28,6 +29,12 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         adapter.addTestList(testlist())
 
         return binding.root
+    }
+
+    private fun clickOnItem(item: Character) {
+
+        parentFragmentManager.beginTransaction().replace(R.layout.fragment_detail_information,DetailListFragment.newInstance()).commit()
+
     }
 
     private fun testlist(): List<Character> {
