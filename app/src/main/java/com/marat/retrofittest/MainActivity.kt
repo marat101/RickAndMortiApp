@@ -19,10 +19,5 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().add(
             R.id.fragment_container_view, CharacterListFragment.newInstance()
         ).commit()
-
-
-
-        // 1+1=3
-
     }
 }

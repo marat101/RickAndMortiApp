@@ -1,6 +1,5 @@
 package com.marat.retrofittest
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         binding = FragmentCharacterListBinding.inflate(inflater, container, false)
 
         binding.rcView.adapter = adapter
-        adapter.addTestList(testlist())
+        adapter.setData(testlist())
 
         return binding.root
     }

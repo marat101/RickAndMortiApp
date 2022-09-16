@@ -17,8 +17,7 @@ class RikAdapter(private val onClick: (item: Character) -> Unit) :
     class RikHolder(
         private val binding: ItemCharacterBinding,
         private val onClick: (item: Character) -> Unit
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Character) = with(binding) {
             characterName.text = item.name
             characterImg.load(item.img)
@@ -40,7 +39,7 @@ class RikAdapter(private val onClick: (item: Character) -> Unit) :
         return characterList.size
     }
 
-    fun addTestList(list: List<Character>) {
+    fun setData(list: List<Character>) {
         characterList.addAll(list)
     }
 }
