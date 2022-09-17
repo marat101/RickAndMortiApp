@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.marat.retrofittest.adapter.RikAdapter
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
 import com.marat.retrofittest.detaillistfragment.DetailListFragment
+import com.marat.retrofittest.model.Character
 
 class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
