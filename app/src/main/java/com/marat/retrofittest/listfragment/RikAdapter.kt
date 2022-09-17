@@ -1,13 +1,10 @@
-package com.marat.retrofittest.adapter
+package com.marat.retrofittest.listfragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.marat.retrofittest.Character
-import com.marat.retrofittest.Constants
-import com.marat.retrofittest.R
+import com.marat.retrofittest.model.Character
 import com.marat.retrofittest.databinding.ItemCharacterBinding
 
 class RikAdapter(private val onClick: (item: Character) -> Unit) :

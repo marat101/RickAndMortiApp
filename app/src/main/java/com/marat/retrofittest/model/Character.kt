@@ -1,6 +1,5 @@
-package com.marat.retrofittest
+package com.marat.retrofittest.model
 
-import android.widget.ImageView
 import androidx.annotation.Nullable
 
 data class Character(val id: Int,
