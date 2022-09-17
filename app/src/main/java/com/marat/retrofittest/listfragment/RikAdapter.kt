@@ -1,4 +1,4 @@
-package com.marat.retrofittest.adapter
+package com.marat.retrofittest.listfragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
