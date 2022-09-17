@@ -35,7 +35,7 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         return binding.root
     }
     private fun clickOnItem(item: Character) {
-        parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view, DetailInformationFragment.newInstance()).commit()
+        parentFragmentManager.beginTransaction().replace(R.id.fragment_container_view, DetailInformationFragment.newInstance()).addToBackStack(CharacterListFragment::class.java.name).commit()
     }
 
     private fun testlist(): List<Character> {
