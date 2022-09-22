@@ -2,6 +2,7 @@ package com.marat.retrofittest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import com.marat.retrofittest.listfragment.CharacterListFragment
 
 class MainActivity : AppCompatActivity() {
