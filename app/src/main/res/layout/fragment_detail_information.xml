@@ -14,7 +14,6 @@
         android:layout_margin="5dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +23,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Путин и Зеленский"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -38,7 +36,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
-        android:text="Статус: В разводе "
         android:textColor="@color/white"
         android:textSize="21sp"
         app:layout_constraintTop_toBottomOf="@id/character_name" />
@@ -49,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
-        android:text="Вид: Деловой"
         android:textColor="@color/white"
         android:textSize="21sp"
         app:layout_constraintTop_toBottomOf="@id/character_status" />
@@ -60,7 +56,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
-        android:text="Тип: Мутный "
         android:textColor="@color/white"
         android:textSize="21sp"
         app:layout_constraintTop_toBottomOf="@id/character_species" />
@@ -71,7 +66,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
-        android:text="Пол: Ламинат"
         android:textColor="@color/white"
         android:textSize="21sp"
         app:layout_constraintTop_toBottomOf="@id/character_type" />
@@ -82,7 +76,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
-        android:text="Дата создания: Завтра"
         android:textColor="@color/white"
         android:textSize="21sp"
         app:layout_constraintTop_toBottomOf="@id/character_gender" />
