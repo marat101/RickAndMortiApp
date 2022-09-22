@@ -1,23 +1,27 @@
 package com.marat.retrofittest.listfragment
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.marat.retrofittest.model.Character
 import com.marat.retrofittest.databinding.ItemCharacterBinding
+import com.marat.retrofittest.model.Character
+import com.marat.retrofittest.model.Result
+import retrofit2.Response
 
-class RikAdapter(private val onClick: (item: Character) -> Unit) :
+class RikAdapter(private val onClick: (item: Result) -> Unit) :
     RecyclerView.Adapter<RikAdapter.RikHolder>() {
-    private val characterList = mutableListOf<Character>()
+    private var characterList = emptyList<Result>()
 
     class RikHolder(
         private val binding: ItemCharacterBinding,
-        private val onClick: (item: Character) -> Unit
+        private val onClick: (item: Result) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Character) = with(binding) {
+
+        fun bind(item: Result) = with(binding) {
             characterName.text = item.name
-            characterImg.load(item.img)
+            characterImg.load(item.image)
             itemView.setOnClickListener { onClick(item) }
         }
     }
@@ -36,7 +40,9 @@ class RikAdapter(private val onClick: (item: Character) -> Unit) :
         return characterList.size
     }
 
-    fun setData(list: List<Character>) {
-        characterList.addAll(list)
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(list: List<Result>) {
+        characterList = list
+        notifyDataSetChanged()
     }
 }

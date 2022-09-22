@@ -6,7 +6,7 @@
     android:id="@+id/rc_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="#121212"
     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
