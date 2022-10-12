@@ -7,17 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import coil.load
-import com.marat.retrofittest.Constants
-import com.marat.retrofittest.R
-import com.marat.retrofittest.databinding.FragmentDetailInformationBinding
 import com.marat.retrofittest.data.model.Result
+import com.marat.retrofittest.databinding.FragmentDetailInformationBinding
 
-class DetailInformationFragment : Fragment(R.layout.fragment_detail_information) {
+class DetailInformationFragment : Fragment() {
 
     companion object {
+        const val ITEM_ARGUMENT = "argument"
+
         fun newInstance(item: Result): DetailInformationFragment {
             val bundle = Bundle().apply {
-                putParcelable(Constants.ITEM_ARGUMENT, item)
+                putParcelable(ITEM_ARGUMENT, item)
             }
             return DetailInformationFragment().apply {
                 arguments = bundle
@@ -35,7 +35,7 @@ class DetailInformationFragment : Fragment(R.layout.fragment_detail_information)
     ): View {
         binding = FragmentDetailInformationBinding.inflate(inflater, container, false)
 
-        val result = arguments?.getParcelable<Result>(Constants.ITEM_ARGUMENT)
+        val result = arguments?.getParcelable<Result>(ITEM_ARGUMENT)
         binding.image.load(result?.image)
         binding.characterName.text = result?.name
         binding.characterStatus.text = "Status: ${result?.status}"
