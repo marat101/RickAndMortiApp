@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#121212"
+    android:id="@+id/detail_inf"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/yellow"
-    android:id="@+id/detail_inf">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/image"
@@ -14,7 +14,6 @@
         android:layout_margin="5dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,12 +23,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image"
-        android:text="Путин и Зеленский" />
+        app:layout_constraintTop_toBottomOf="@id/image" />
 
     <TextView
         android:id="@+id/character_status"
@@ -37,9 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/white"
         android:textSize="21sp"
-        app:layout_constraintTop_toBottomOf="@id/character_name"
-        android:text="Статус: В разводе " />
+        app:layout_constraintTop_toBottomOf="@id/character_name" />
 
     <TextView
         android:id="@+id/character_species"
@@ -47,9 +46,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/white"
         android:textSize="21sp"
-        app:layout_constraintTop_toBottomOf="@id/character_status"
-        android:text="Вид: Деловой" />
+        app:layout_constraintTop_toBottomOf="@id/character_status" />
 
     <TextView
         android:id="@+id/character_type"
@@ -57,9 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/white"
         android:textSize="21sp"
-        app:layout_constraintTop_toBottomOf="@id/character_species"
-        android:text="Тип: Мутный " />
+        app:layout_constraintTop_toBottomOf="@id/character_species" />
 
     <TextView
         android:id="@+id/character_gender"
@@ -67,9 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/white"
         android:textSize="21sp"
-        app:layout_constraintTop_toBottomOf="@id/character_type"
-        android:text="Пол: Ламинат" />
+        app:layout_constraintTop_toBottomOf="@id/character_type" />
 
     <TextView
         android:id="@+id/character_creation_date"
@@ -77,8 +76,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/white"
         android:textSize="21sp"
-        app:layout_constraintTop_toBottomOf="@id/character_gender"
-        android:text="Дата создания: Завтра" />
+        app:layout_constraintTop_toBottomOf="@id/character_gender" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
