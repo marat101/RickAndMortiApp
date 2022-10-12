@@ -1,6 +1,7 @@
 package com.marat.retrofittest.listfragment
 
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import com.marat.retrofittest.data.model.Result
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
 import com.marat.retrofittest.detailinfotfragment.DetailInformationFragment
 
-class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
+class CharacterListFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterListBinding
     private var adapter = RikAdapter(onClick = { clickOnItem(it) })
@@ -39,9 +40,16 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
+
     private fun clickOnItem(item: Result) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_view, DetailInformationFragment.newInstance(item))
-            .addToBackStack(CharacterListFragment::class.java.name).commit()
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container_view, DetailInformationFragment.newInstance(item))
+            addToBackStack(CharacterListFragment::class.java.name)
+        }.commit()
     }
 }
