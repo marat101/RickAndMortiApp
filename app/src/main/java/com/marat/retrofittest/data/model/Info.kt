@@ -1,4 +1,4 @@
-package com.marat.retrofittest.model
+package com.marat.retrofittest.data.model
 
 data class Info(
     val count: Int,

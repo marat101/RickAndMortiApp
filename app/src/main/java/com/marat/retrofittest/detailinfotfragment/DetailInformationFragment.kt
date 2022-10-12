@@ -10,7 +10,7 @@ import coil.load
 import com.marat.retrofittest.Constants
 import com.marat.retrofittest.R
 import com.marat.retrofittest.databinding.FragmentDetailInformationBinding
-import com.marat.retrofittest.model.Result
+import com.marat.retrofittest.data.model.Result
 
 class DetailInformationFragment : Fragment(R.layout.fragment_detail_information) {
 

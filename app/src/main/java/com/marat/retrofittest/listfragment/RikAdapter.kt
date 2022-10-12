@@ -6,13 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.marat.retrofittest.databinding.ItemCharacterBinding
-import com.marat.retrofittest.model.Character
-import com.marat.retrofittest.model.Result
-import retrofit2.Response
+import com.marat.retrofittest.data.model.Result
 
 class RikAdapter(private val onClick: (item: Result) -> Unit) :
     RecyclerView.Adapter<RikAdapter.RikHolder>() {
-    private var characterList = emptyList<Result>()
+    private var characterList = mutableListOf<Result>()
 
     class RikHolder(
         private val binding: ItemCharacterBinding,
@@ -27,8 +25,7 @@ class RikAdapter(private val onClick: (item: Result) -> Unit) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RikHolder {
-        val inflater =
-            ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val inflater = ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RikHolder(inflater, onClick)
     }
 
@@ -42,7 +39,8 @@ class RikAdapter(private val onClick: (item: Result) -> Unit) :
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(list: List<Result>) {
-        characterList = list
+        characterList.clear()
+        characterList.addAll(list)
         notifyDataSetChanged()
     }
 }

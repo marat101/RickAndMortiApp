@@ -1,20 +1,21 @@
 package com.marat.retrofittest.listfragment
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marat.retrofittest.data.repository.Repository
-import com.marat.retrofittest.model.Character
+import com.marat.retrofittest.data.model.Character
 import kotlinx.coroutines.launch
-import retrofit2.Response
 
 class ListFragmentViewModel : ViewModel() {
-    val rep = Repository()
-    val characterList: MutableLiveData<Response<Character>> = MutableLiveData()
+    private val rep = Repository()
+    private val _characterList: MutableLiveData<Character> = MutableLiveData()
+    val characterList: LiveData<Character> = _characterList
 
-    fun getCharacterList() {
+    init {
         viewModelScope.launch {
-            characterList.value = rep.getData()
+            _characterList.value = rep.getData()
         }
     }
 }

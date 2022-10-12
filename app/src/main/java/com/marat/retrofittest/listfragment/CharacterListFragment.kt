@@ -1,16 +1,16 @@
 package com.marat.retrofittest.listfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.marat.retrofittest.R
+import com.marat.retrofittest.data.model.Result
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
 import com.marat.retrofittest.detailinfotfragment.DetailInformationFragment
-import com.marat.retrofittest.model.Result
 
 class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
 
@@ -28,12 +28,14 @@ class CharacterListFragment : Fragment(R.layout.fragment_character_list) {
     ): View {
         binding = FragmentCharacterListBinding.inflate(inflater, container, false)
         val viewModel = ViewModelProvider(this).get(ListFragmentViewModel::class.java)
-        viewModel.getCharacterList()
-        viewModel.characterList.observe(viewLifecycleOwner) { list ->
-            list.body()?.let { adapter.setData(it.results) }
-        }
         binding.rcView.adapter = adapter
 
+        viewModel.characterList.observe(viewLifecycleOwner) { list ->
+            binding.progressBar.visibility = View.VISIBLE
+            list?.let { adapter.setData(it.results) }
+            Log.e("aaa", viewModel.characterList.toString())
+            binding.progressBar.visibility = View.INVISIBLE
+        }
         return binding.root
     }
 
