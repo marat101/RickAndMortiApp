@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import coil.load
 import com.marat.retrofittest.data.model.Result
 import com.marat.retrofittest.databinding.FragmentDetailInformationBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailInformationFragment : Fragment() {
 
     companion object {

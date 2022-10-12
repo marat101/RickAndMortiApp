@@ -1,22 +1,24 @@
 package com.marat.retrofittest.listfragment
 
 import android.os.Bundle
-import android.text.TextUtils.replace
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.marat.retrofittest.R
 import com.marat.retrofittest.data.model.Result
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
 import com.marat.retrofittest.detailinfotfragment.DetailInformationFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CharacterListFragment : Fragment() {
 
     private lateinit var binding: FragmentCharacterListBinding
     private var adapter = RikAdapter(onClick = { clickOnItem(it) })
+    private val viewModel: ListFragmentViewModel by viewModels()
 
     companion object {
         fun newInstance() = CharacterListFragment()
@@ -28,8 +30,12 @@ class CharacterListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCharacterListBinding.inflate(inflater, container, false)
-        val viewModel = ViewModelProvider(this).get(ListFragmentViewModel::class.java)
         binding.rcView.adapter = adapter
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         viewModel.characterList.observe(viewLifecycleOwner) { list ->
             binding.progressBar.visibility = View.VISIBLE
@@ -37,13 +43,6 @@ class CharacterListFragment : Fragment() {
             Log.e("aaa", viewModel.characterList.toString())
             binding.progressBar.visibility = View.INVISIBLE
         }
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
     }
 
     private fun clickOnItem(item: Result) {
