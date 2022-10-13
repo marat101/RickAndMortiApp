@@ -1,7 +1,7 @@
 package com.marat.retrofittest.di
 
 import com.marat.retrofittest.data.api.ApiService
-import com.marat.retrofittest.data.repository.Repository
+import com.marat.retrofittest.data.repository.CharacterRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,5 +14,5 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRepository(api: ApiService) = Repository(api)
+    fun provideRepository(api: ApiService) = CharacterRepository(api)
 }

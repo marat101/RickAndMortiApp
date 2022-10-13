@@ -40,7 +40,6 @@ class CharacterListFragment : Fragment() {
         viewModel.characterList.observe(viewLifecycleOwner) { list ->
             binding.progressBar.visibility = View.VISIBLE
             list?.let { adapter.setData(it.results) }
-            Log.e("aaa", viewModel.characterList.toString())
             binding.progressBar.visibility = View.INVISIBLE
         }
     }
