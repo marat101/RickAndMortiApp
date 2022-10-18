@@ -1,26 +1,28 @@
 package com.marat.retrofittest.listfragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.marat.retrofittest.R
 import com.marat.retrofittest.data.model.Result
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
-import com.marat.retrofittest.detailinfotfragment.DetailInformationFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CharacterListFragment : Fragment() {
+class CharacterListFragment : Fragment(), RikAdapter.CharacterListListener {
 
     private lateinit var binding: FragmentCharacterListBinding
-    private var adapter = RikAdapter(onClick = { clickOnItem(it) })
+    private var adapter: RikAdapter? = null
     private val viewModel: ListFragmentViewModel by viewModels()
 
     companion object {
+        const val ITEM_ARGUMENT = "argument"
         fun newInstance() = CharacterListFragment()
     }
 
@@ -30,6 +32,7 @@ class CharacterListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCharacterListBinding.inflate(inflater, container, false)
+        adapter = RikAdapter(this)
         binding.rcView.adapter = adapter
         return binding.root
     }
@@ -39,15 +42,19 @@ class CharacterListFragment : Fragment() {
 
         viewModel.characterList.observe(viewLifecycleOwner) { list ->
             binding.progressBar.visibility = View.VISIBLE
-            list?.let { adapter.setData(it.results) }
+            list?.let { adapter?.setData(it.results) }
             binding.progressBar.visibility = View.INVISIBLE
         }
     }
 
-    private fun clickOnItem(item: Result) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container_view, DetailInformationFragment.newInstance(item))
-            addToBackStack(CharacterListFragment::class.java.name)
-        }.commit()
+    override fun onCharacterClick(item: Result, img: View) {
+        img.findNavController().navigate(
+            R.id.action_characterListFragment_to_detailInformationFragment,
+            bundleOf(
+                ITEM_ARGUMENT to item,
+            ),
+            null,
+            FragmentNavigatorExtras(img to item.id.toString())
+        )
     }
 }
