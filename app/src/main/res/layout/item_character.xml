@@ -19,25 +19,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/red"
-        android:padding="5dp">
+        android:background="@color/red">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/character_img"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
             tools:background="@color/white" />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
         <TextView
             android:id="@+id/character_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
             android:textColor="@color/white"
+            android:gravity="center"
             android:textSize="18sp"
-            tools:text="СЮДА ИЛИ ТУДА" />
-
+            tools:text="СЮДА ИЛИ ТУДА"
+            android:layout_gravity="center" />
+        </FrameLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
