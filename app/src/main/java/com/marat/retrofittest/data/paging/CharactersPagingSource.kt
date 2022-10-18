@@ -12,8 +12,4 @@ class CharactersPagingSource(
     override fun getRefreshKey(state: PagingState<Int, Character>): Int? {
         TODO("Not yet implemented")
     }
-
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Character> {
-        TODO("Not yet implemented")
-    }
 }
