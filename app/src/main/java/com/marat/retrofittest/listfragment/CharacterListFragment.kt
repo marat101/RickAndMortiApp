@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -18,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class CharacterListFragment : Fragment(), RikAdapter.CharacterListListener {
 
     private lateinit var binding: FragmentCharacterListBinding
-    private var adapter: RikAdapter? = null
+    private var charactersAdapter: RikAdapter? = null
     private val viewModel: ListFragmentViewModel by viewModels()
 
     companion object {
@@ -32,8 +33,12 @@ class CharacterListFragment : Fragment(), RikAdapter.CharacterListListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCharacterListBinding.inflate(inflater, container, false)
-        adapter = RikAdapter(this)
-        binding.rcView.adapter = adapter
+        charactersAdapter = RikAdapter(this)
+        binding.rcView.apply {
+            adapter = charactersAdapter
+            postponeEnterTransition()
+            this.doOnPreDraw { startPostponedEnterTransition() }
+        }
         return binding.root
     }
 
@@ -42,7 +47,7 @@ class CharacterListFragment : Fragment(), RikAdapter.CharacterListListener {
 
         viewModel.characterList.observe(viewLifecycleOwner) { list ->
             binding.progressBar.visibility = View.VISIBLE
-            list?.let { adapter?.setData(it.results) }
+            list?.let { charactersAdapter?.setData(it.results) }
             binding.progressBar.visibility = View.INVISIBLE
         }
     }
