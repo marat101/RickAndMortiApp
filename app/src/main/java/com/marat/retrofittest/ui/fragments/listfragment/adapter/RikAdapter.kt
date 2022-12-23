@@ -1,4 +1,4 @@
-package com.marat.retrofittest.listfragment
+package com.marat.retrofittest.ui.fragments.listfragment.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

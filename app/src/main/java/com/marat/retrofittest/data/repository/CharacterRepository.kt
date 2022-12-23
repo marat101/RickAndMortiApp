@@ -1,9 +1,8 @@
 package com.marat.retrofittest.data.repository
 
-import com.marat.retrofittest.data.api.ApiService
 import com.marat.retrofittest.data.model.Character
-import javax.inject.Inject
+import retrofit2.Response
 
-class CharacterRepository @Inject constructor(private val api: ApiService) {
-    suspend fun getData(): Character = api.getCharacterList().body()!!
+interface CharacterRepository {
+    suspend fun getData(): Response<Character>
 }

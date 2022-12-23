@@ -1,18 +1,18 @@
 package com.marat.retrofittest.di
 
-import com.marat.retrofittest.data.api.ApiService
 import com.marat.retrofittest.data.repository.CharacterRepository
+import com.marat.retrofittest.data.repository.implementation.CharacterRepositoryImpl
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
+interface RepositoryModule {
 
-    @Provides
+    @Binds
     @Singleton
-    fun provideRepository(api: ApiService) = CharacterRepository(api)
+    fun bindRepository(repository: CharacterRepositoryImpl): CharacterRepository
 }

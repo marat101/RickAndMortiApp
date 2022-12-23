@@ -1,6 +1,6 @@
 package com.marat.retrofittest.di
 
-import com.marat.retrofittest.Constants
+import com.marat.retrofittest.utils.Constants
 import com.marat.retrofittest.data.api.ApiService
 import dagger.Module
 import dagger.Provides
@@ -8,7 +8,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 import javax.inject.Singleton
 
 @Module
