@@ -6,13 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:foreground="?selectableItemBackground"
     android:padding="8dp"
     app:cardCornerRadius="12dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    android:foreground="@drawable/card_stroke">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/character_img"
