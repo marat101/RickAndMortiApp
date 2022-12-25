@@ -8,6 +8,7 @@
     android:layout_margin="5dp"
     android:padding="8dp"
     app:cardCornerRadius="12dp"
+    app:cardElevation="10dp"
     android:foreground="@drawable/card_stroke">
 
     <androidx.appcompat.widget.AppCompatImageView
