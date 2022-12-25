@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
-    id("com.google.dagger.hilt.android")
     id "kotlin-kapt"
 }
 
@@ -51,9 +50,11 @@ dependencies {
 
     implementation("io.coil-kt:coil:2.2.2")
 
-    //Dagger Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    //Koin
+    def koin = "3.2.0"
+    implementation "io.insert-koin:koin-core:$koin"
+    implementation "io.insert-koin:koin-test:$koin"
+    implementation "io.insert-koin:koin-android:$koin"
 
     //Retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'

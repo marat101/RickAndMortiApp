@@ -5,7 +5,6 @@ import android.icu.text.SimpleDateFormat
 import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +15,8 @@ import com.marat.retrofittest.data.model.Result
 import com.marat.retrofittest.databinding.FragmentDetailInformationBinding
 import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.listfragment.CharacterListFragment
-import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-@AndroidEntryPoint
 class DetailInformationFragment : BaseFragment<FragmentDetailInformationBinding>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -35,21 +32,23 @@ class DetailInformationFragment : BaseFragment<FragmentDetailInformationBinding>
         val args = arguments?.getParcelable<Result>(CharacterListFragment.ITEM_ARGUMENT)
         if (args?.type == "") binding.characterType.isVisible = false
 
-        Log.e("date", args?.created.toString())
-
-
         binding.apply {
+            val gend = args?.gender
+
             characterImg.transitionName = args?.id.toString()
             characterImg.load(args?.image.toString())
             characterName.text = args?.name
-            characterStatus.text = "Status: ${args?.status}"
-            characterSpecies.text = "Scecies: ${args?.species}"
-            characterType.text = "Type: ${args?.type}"
-            characterGender.text = "Gender: ${args?.gender}"
+            characterStatus.text = "Статус: ${args?.status}"
+            characterSpecies.text = "Вид: ${args?.species}"
+            characterType.text = "Тип: ${args?.type}"
+            characterGender.text = "Пол: $gend"
             val dateformatter = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.ROOT)
             val parsed = dateformatter.parse(args?.created)
-            val formatted = SimpleDateFormat("dd MMMM yyyy года", Locale.forLanguageTag("ru")).format(parsed)
-            characterCreationDate.text = "Created: $formatted"
+            val formatted =
+                SimpleDateFormat("dd MMMM yyyy года", Locale.forLanguageTag("ru")).format(parsed)
+            var created = "Создан"
+            if (gend == "Female") created = "Создана"
+            characterCreationDate.text = "$created $formatted"
         }
     }
 

@@ -14,15 +14,14 @@ import com.marat.retrofittest.databinding.FragmentCharacterListBinding
 import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.detailfragment.DetailInformationFragment
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.RikAdapter
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Response
 
-@AndroidEntryPoint
 class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
     RikAdapter.CharacterListListener {
 
     private var charactersAdapter: RikAdapter? = null
-    private val viewModel: CharactersListViewModel by viewModels()
+    private val viewModel by viewModel<CharactersListViewModel>()
 
     companion object {
         const val ITEM_ARGUMENT = "argument"
