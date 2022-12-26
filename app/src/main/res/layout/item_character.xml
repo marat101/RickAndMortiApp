@@ -22,7 +22,7 @@
         android:id="@+id/character_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent_white"
+        android:background="@drawable/background_character_name"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:textColor="@color/black"
