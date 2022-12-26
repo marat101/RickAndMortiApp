@@ -1,21 +1,18 @@
 package com.marat.retrofittest.ui.fragments.listfragment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.marat.retrofittest.data.model.Character
-import com.marat.retrofittest.data.repository.CharacterRepository
-import kotlinx.coroutines.launch
-import retrofit2.Response
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.marat.retrofittest.data.model.Result
+import com.marat.retrofittest.data.paging.CharactersPagingSource
+import kotlinx.coroutines.flow.Flow
 
-class CharactersListViewModel (private val rep: CharacterRepository) : ViewModel() {
-    private val _characterList = MutableLiveData<Response<Character>>()
-    val characterList: LiveData<Response<Character>> = _characterList
+class CharactersListViewModel(private val pagingSource: CharactersPagingSource) : ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            _characterList.value = rep.getData()
-        }
-    }
+    val characterList: Flow<PagingData<Result>> =
+        Pager(PagingConfig(pageSize = 1, prefetchDistance = 20),
+            pagingSourceFactory = { pagingSource }).flow.cachedIn(viewModelScope)
 }

@@ -9,6 +9,6 @@ interface ApiService {
 
     @GET("character/")
     suspend fun getCharacterList(
-        @Query("page") page: Int = 1
+        @Query("page") page: Int
     ): Response<Character>
 }

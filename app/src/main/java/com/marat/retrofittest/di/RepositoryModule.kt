@@ -5,8 +5,8 @@ import com.marat.retrofittest.data.repository.implementation.CharacterRepository
 import org.koin.dsl.module
 
 
-val repositoryModule = module {
-    single<CharacterRepository> {
-        CharacterRepositoryImpl(api = get())
-    }
-}
+//val repositoryModule = module {
+//    single<CharacterRepository> {
+//        CharacterRepositoryImpl(pagingSource = get())
+//    }
+//}
