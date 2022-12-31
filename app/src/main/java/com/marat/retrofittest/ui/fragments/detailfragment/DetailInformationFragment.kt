@@ -11,10 +11,10 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import coil.load
-import com.turtleteam.domain.model.Result
 import com.marat.retrofittest.databinding.FragmentDetailInformationBinding
 import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.listfragment.CharacterListFragment
+import com.turtleteam.domain.model.Result
 import java.util.*
 
 class DetailInformationFragment : BaseFragment<FragmentDetailInformationBinding>() {

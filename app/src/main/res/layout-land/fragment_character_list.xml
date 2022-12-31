@@ -23,4 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
+    <include
+        android:id="@+id/stateview"
+        layout="@layout/state_error"/>
+
 </FrameLayout>

@@ -11,12 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.marat.retrofittest.R
-import com.turtleteam.domain.model.Result
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
 import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.detailfragment.DetailInformationFragment
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.CharactersLoadStateAdapter
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.RikAdapter
+import com.turtleteam.domain.model.Result
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -44,14 +44,26 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
 
     private fun initCharactersList() {
 
-        val footer = CharactersLoadStateAdapter{charactersAdapter.retry()}
+        val footer = CharactersLoadStateAdapter { charactersAdapter.retry() }
         val mlayoutManager = GridLayoutManager(this.context, 4)
 
         charactersAdapter.addLoadStateListener {
-            if (it.append is LoadState.NotLoading && charactersAdapter.itemCount < 1) {
-                binding.progressBar.visibility = View.VISIBLE
-            }
-            else binding.progressBar.visibility = View.GONE
+            if (charactersAdapter.itemCount < 1) {
+                when (it.refresh) {
+                    is LoadState.NotLoading -> {
+                        binding.progressBar.visibility = View.GONE
+                    }
+                    is LoadState.Loading -> binding.progressBar.visibility = View.VISIBLE
+                    is LoadState.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        binding.stateview?.retryView?.visibility = View.VISIBLE
+                        binding.stateview?.retryBtn?.setOnClickListener {
+                            charactersAdapter.retry()
+                            binding.stateview?.retryView?.visibility = View.INVISIBLE
+                        }
+                    }
+                }
+            } else binding.progressBar.visibility = View.GONE
         }
 
         binding.rcView.apply {

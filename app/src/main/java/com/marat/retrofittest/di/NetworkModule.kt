@@ -1,8 +1,5 @@
 package com.marat.retrofittest.di
 
-import com.turtleteam.network.data.api.ApiService
-import com.turtleteam.network.data.paging.CharactersPagingSource
-import com.turtleteam.network.data.utils.Constants
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

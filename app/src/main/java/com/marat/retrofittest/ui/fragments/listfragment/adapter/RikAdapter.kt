@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.turtleteam.domain.model.Result
 import com.marat.retrofittest.databinding.ItemCharacterBinding
 import com.marat.retrofittest.ui.base.Diffutils
+import com.turtleteam.domain.model.Result
 
 class RikAdapter(private var listener: CharacterListListener) : PagingDataAdapter<Result, RikAdapter.RikHolder>(Diffutils()) {
 

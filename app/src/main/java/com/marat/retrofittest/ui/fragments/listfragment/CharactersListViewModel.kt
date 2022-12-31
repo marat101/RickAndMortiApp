@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.turtleteam.domain.model.Result
 import com.marat.retrofittest.aaaaaaaaaaaaaaa.usecase.GetCharactersPageUseCase
+import com.turtleteam.domain.model.Result
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn

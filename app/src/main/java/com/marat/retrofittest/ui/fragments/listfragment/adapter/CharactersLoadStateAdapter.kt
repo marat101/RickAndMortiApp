@@ -1,6 +1,7 @@
 package com.marat.retrofittest.ui.fragments.listfragment.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
@@ -22,9 +23,7 @@ class CharactersLoadStateAdapter(private val onRetry: () -> Unit) :
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, loadState: LoadState) {
-
-    }
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, loadState: LoadState){}
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -51,6 +50,7 @@ class CharactersLoadStateAdapter(private val onRetry: () -> Unit) :
     ) :
         RecyclerView.ViewHolder(binding.root) {
         init {
+            binding.retryView.visibility = View.VISIBLE
             binding.retryBtn.setOnClickListener {
                 onRetry()
             }

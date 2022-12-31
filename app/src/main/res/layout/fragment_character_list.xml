@@ -23,4 +23,8 @@
         android:indeterminateTint="@color/black"
         android:layout_gravity="center" />
 
+    <include
+        android:id="@+id/stateview"
+        layout="@layout/state_error"/>
+
 </FrameLayout>

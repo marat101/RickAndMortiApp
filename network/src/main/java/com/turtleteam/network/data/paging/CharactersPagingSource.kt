@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.turtleteam.network.data.api.ApiService
 import com.turtleteam.domain.model.Result
+import com.turtleteam.network.data.api.ApiService
 
 class CharactersPagingSource(
     private val api: ApiService,
@@ -25,12 +25,11 @@ class CharactersPagingSource(
 
         return try {
             val response = api.getCharacterList(page)
-
-                Log.e("response code", response.toString())
-                val nextkey = if (response.results.size < pageSize) null else page + 1
-                val prevKey = if (page == 1) null else page - 1
-                LoadResult.Page(response.results, prevKey, nextkey)
-        }catch (e: Exception){
+            Log.e("response code", response.toString())
+            val nextkey = if (response.results.size < pageSize) null else page + 1
+            val prevKey = if (page == 1) null else page - 1
+            LoadResult.Page(response.results, prevKey, nextkey)
+        } catch (e: Exception) {
             LoadResult.Error(e)
         }
     }
