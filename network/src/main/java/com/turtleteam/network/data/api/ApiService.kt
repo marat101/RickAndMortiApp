@@ -1,6 +1,6 @@
-package com.marat.retrofittest.data.api
+package com.turtleteam.network.data.api
 
-import com.marat.retrofittest.data.model.Character
+import com.turtleteam.domain.model.Character
 import retrofit2.http.GET
 import retrofit2.http.Query
 

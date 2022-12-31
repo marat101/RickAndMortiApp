@@ -1,4 +1,4 @@
-package com.marat.retrofittest.data.model
+package com.turtleteam.domain.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

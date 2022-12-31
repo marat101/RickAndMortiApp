@@ -3,7 +3,7 @@ package com.marat.retrofittest.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.marat.retrofittest.aaaaaaaaaaaaaaa.repository.CharacterRepository
-import com.marat.retrofittest.data.paging.CharactersPagingSource
+import com.turtleteam.network.data.paging.CharactersPagingSource
 
 class CharacterRepositoryImpl(private val pagingSource: CharactersPagingSource) :
     CharacterRepository {

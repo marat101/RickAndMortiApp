@@ -1,4 +1,4 @@
-package com.marat.retrofittest.data.model
+package com.turtleteam.domain.model
 
 data class Info(
     val count: Int,

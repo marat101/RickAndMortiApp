@@ -1,4 +1,4 @@
-package com.marat.retrofittest.data.utils.characterswrapper.state
+package com.turtleteam.network.data.utils.characterswrapper.state
 
 sealed class CharacterResult<out T>{
 

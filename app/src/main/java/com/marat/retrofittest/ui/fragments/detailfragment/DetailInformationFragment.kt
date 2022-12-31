@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import coil.load
-import com.marat.retrofittest.data.model.Result
+import com.turtleteam.domain.model.Result
 import com.marat.retrofittest.databinding.FragmentDetailInformationBinding
 import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.listfragment.CharacterListFragment

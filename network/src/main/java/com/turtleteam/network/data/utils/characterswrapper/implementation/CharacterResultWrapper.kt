@@ -1,6 +1,6 @@
-package com.marat.retrofittest.data.utils.characterswrapper.implementation
+package com.turtleteam.network.data.utils.characterswrapper.implementation
 
-import com.marat.retrofittest.data.utils.characterswrapper.state.CharacterResult
+import com.turtleteam.network.data.utils.characterswrapper.state.CharacterResult
 
 object CharacterResultWrapper {
 

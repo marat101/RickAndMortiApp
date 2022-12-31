@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.marat.retrofittest.R
-import com.marat.retrofittest.data.model.Result
+import com.turtleteam.domain.model.Result
 import com.marat.retrofittest.databinding.FragmentCharacterListBinding
 import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.detailfragment.DetailInformationFragment

@@ -1,11 +1,11 @@
-package com.marat.retrofittest.data.paging
+package com.turtleteam.network.data.paging
 
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.marat.retrofittest.data.api.ApiService
-import com.marat.retrofittest.data.model.Result
+import com.turtleteam.network.data.api.ApiService
+import com.turtleteam.domain.model.Result
 
 class CharactersPagingSource(
     private val api: ApiService,
