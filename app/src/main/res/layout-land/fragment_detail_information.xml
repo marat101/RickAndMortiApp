@@ -1,86 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/detail_inf"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detail_inf"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/character_img"
         android:layout_width="0dp"
-        android:layout_weight="3"
         android:layout_height="match_parent"
-        android:maxWidth="300dp"
-        tools:src="@android:color/system_accent3_700"
         android:layout_margin="5dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
+        android:layout_weight="3"
+        android:maxWidth="300dp"
+        android:padding="2dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearance="@style/detail_image"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        tools:src="@tools:sample/backgrounds/scenic" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="4"
         android:layout_height="match_parent"
+        android:layout_weight="4"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/character_name"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        tools:text="11111111111111111"
-        android:textSize="30sp"
-        android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/character_status"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="2222222222222222"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
-        android:textSize="21sp" />
+        <TextView
+            android:id="@+id/character_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="11111111111111111" />
 
-    <TextView
-        android:id="@+id/character_species"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="3333333333333333333333333"
-        android:layout_marginStart="2dp"
-        android:textColor="@color/black"
-        android:layout_marginTop="5dp"
-        android:textSize="21sp" />
+        <TextView
+            android:id="@+id/character_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            tools:text="2222222222222222" />
 
-    <TextView
-        android:id="@+id/character_type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/black"
-        tools:text="444444444444444444444"
-        android:textSize="21sp" />
+        <TextView
+            android:id="@+id/character_species"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            tools:text="3333333333333333333333333" />
 
-    <TextView
-        android:id="@+id/character_gender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
-        tools:text="55555555555555555555"
-        android:textSize="21sp" />
+        <TextView
+            android:id="@+id/character_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            tools:text="444444444444444444444" />
 
-    <TextView
-        android:id="@+id/character_creation_date"
-        android:textColor="@color/black"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="5dp"
-        tools:text="66666666666666666666666666"
-        android:textSize="21sp" />
+        <TextView
+            android:id="@+id/character_gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            tools:text="55555555555555555555" />
+
+        <TextView
+            android:id="@+id/character_creation_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            tools:text="66666666666666666666666666" />
     </LinearLayout>
 </LinearLayout>

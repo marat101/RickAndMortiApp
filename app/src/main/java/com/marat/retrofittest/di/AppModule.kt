@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val appModule = module {
     viewModel {
-        CharactersListViewModel(pagingSource = get())
+        CharactersListViewModel( get())
     }
 }

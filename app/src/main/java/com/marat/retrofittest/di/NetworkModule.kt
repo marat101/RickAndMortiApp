@@ -2,7 +2,7 @@ package com.marat.retrofittest.di
 
 import com.marat.retrofittest.data.api.ApiService
 import com.marat.retrofittest.data.paging.CharactersPagingSource
-import com.marat.retrofittest.utils.Constants
+import com.marat.retrofittest.data.utils.Constants
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
-    id "kotlin-kapt"
 }
 
 android {
@@ -53,12 +52,12 @@ dependencies {
     // Paging
     implementation "androidx.paging:paging-runtime:3.1.1"
 
+    //Retrofit
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
     //Koin
     def koin = "3.2.0"
     implementation "io.insert-koin:koin-core:$koin"
     implementation "io.insert-koin:koin-android:$koin"
-
-    //Retrofit
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
 }

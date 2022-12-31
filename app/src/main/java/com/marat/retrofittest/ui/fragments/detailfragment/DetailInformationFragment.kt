@@ -29,7 +29,11 @@ class DetailInformationFragment : BaseFragment<FragmentDetailInformationBinding>
             duration = 150
         }
 
-        val args = arguments?.getParcelable<Result>(CharacterListFragment.ITEM_ARGUMENT)
+        val args = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(CharacterListFragment.ITEM_ARGUMENT, Result::class.java)
+        } else {
+            arguments?.getParcelable<Result>(CharacterListFragment.ITEM_ARGUMENT)
+        }
         if (args?.type == "") binding.characterType.isVisible = false
 
         binding.apply {
