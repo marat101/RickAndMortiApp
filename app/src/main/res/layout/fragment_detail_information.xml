@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detail_inf"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.AppCompatImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/character_img"
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_margin="5dp"
-        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:transitionName="1"/>
+        app:shapeAppearance="@style/detail_image"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        android:padding="2dp"
+        tools:src="@tools:sample/backgrounds/scenic" />
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/character_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/character_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/black"
         android:textSize="21sp" />
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/character_species"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/black"
         android:textSize="21sp" />
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/character_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/black"
         android:textSize="21sp" />
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/character_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
         android:layout_marginTop="5dp"
+        android:textColor="@color/black"
         android:textSize="21sp" />
 
     <TextView

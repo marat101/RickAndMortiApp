@@ -9,20 +9,20 @@
     android:padding="8dp"
     app:cardCornerRadius="12dp"
     app:cardElevation="10dp"
-    android:foreground="@drawable/card_stroke">
+    android:foreground="@drawable/card_selector">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/character_img"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        tools:background="@color/white" />
+        android:background="@color/white" />
 
     <TextView
         android:id="@+id/character_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent_white"
+        android:background="@drawable/background_character_name"
         android:layout_gravity="bottom"
         android:gravity="center"
         android:textColor="@color/black"

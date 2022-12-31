@@ -1,17 +1,16 @@
 package com.marat.retrofittest.ui.fragments.listfragment.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.marat.retrofittest.data.model.Result
 import com.marat.retrofittest.databinding.ItemCharacterBinding
+import com.marat.retrofittest.ui.base.Diffutils
+import com.turtleteam.domain.model.Result
 
-class RikAdapter(private var listener: CharacterListListener) :
-    RecyclerView.Adapter<RikAdapter.RikHolder>() {
-    private var characterList = mutableListOf<Result>()
+class RikAdapter(private var listener: CharacterListListener) : PagingDataAdapter<Result, RikAdapter.RikHolder>(Diffutils()) {
 
     interface CharacterListListener{
         fun onCharacterClick(item: Result, img: View)
@@ -36,17 +35,6 @@ class RikAdapter(private var listener: CharacterListListener) :
     }
 
     override fun onBindViewHolder(holder: RikHolder, position: Int) {
-        holder.bind(characterList[position], listener)
-    }
-
-    override fun getItemCount(): Int {
-        return characterList.size
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(list: List<Result>) {
-        characterList.clear()
-        characterList.addAll(list)
-        notifyDataSetChanged()
+        getItem(position)?.let { holder.bind(it, listener) }
     }
 }
