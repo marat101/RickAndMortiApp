@@ -20,15 +20,16 @@ class CharactersPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Result> {
 
         val page = params.key ?: 1
-        val pageSize = params.loadSize
-
 
         return try {
             val response = api.getCharacterList(page)
+            val rresult = response.body()!!.results
+            val result = mutableListOf<Result>()
+            rresult.forEach { result.add(it) }
             Log.e("response code", response.toString())
-            val nextkey = if (response.results.size < pageSize) null else page + 1
+            val nextkey = if (response.body()?.info!!.pages == page) null else page + 1
             val prevKey = if (page == 1) null else page - 1
-            LoadResult.Page(response.results, prevKey, nextkey)
+            LoadResult.Page(result, prevKey, nextkey)
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
