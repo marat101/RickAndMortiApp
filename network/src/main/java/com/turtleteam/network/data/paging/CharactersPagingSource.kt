@@ -9,6 +9,9 @@ import com.turtleteam.network.data.api.ApiService
 
 class CharactersPagingSource(
     private val api: ApiService,
+    private val name: String? = null,
+    private val gender: String? = null,
+    private val status: String? = null
 ) : PagingSource<Int, Result>() {
     override fun getRefreshKey(state: PagingState<Int, Result>): Int? {
         val anchorPos = state.anchorPosition ?: return null
@@ -22,10 +25,8 @@ class CharactersPagingSource(
         val page = params.key ?: 1
 
         return try {
-            val response = api.getCharacterList(page)
-            val rresult = response.body()!!.results
-            val result = mutableListOf<Result>()
-            rresult.forEach { result.add(it) }
+            val response = api.getCharacterList(page, name = name)
+            val result = response.body()!!.results
             Log.e("response code", response.toString())
             val nextkey = if (response.body()?.info!!.pages == page) null else page + 1
             val prevKey = if (page == 1) null else page - 1

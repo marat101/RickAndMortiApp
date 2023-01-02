@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">RickAndMorty</string>
+    <string name="app_name_toolbar">Rick And Morty</string>
     <string name="error">Error</string>
     <string name="retry">retry</string>
+    <string name="search">Search</string>
+    <string name="search_hint">Search…</string>
 </resources>

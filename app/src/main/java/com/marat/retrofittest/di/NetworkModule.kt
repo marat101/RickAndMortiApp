@@ -3,6 +3,7 @@ package com.marat.retrofittest.di
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.turtleteam.network.data.api.ApiService
 
 
 val networkModule = module {
@@ -14,8 +15,8 @@ val networkModule = module {
             .build()
     }
 
-    single<com.turtleteam.network.data.api.ApiService> {
-        get<Retrofit>().create(com.turtleteam.network.data.api.ApiService::class.java)
+    single<ApiService> {
+        get<Retrofit>().create(ApiService::class.java)
     }
 
     single {

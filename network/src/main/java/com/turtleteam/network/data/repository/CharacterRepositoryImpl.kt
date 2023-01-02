@@ -1,13 +1,18 @@
-package com.marat.retrofittest.data.repository
+package com.turtleteam.network.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import com.marat.retrofittest.aaaaaaaaaaaaaaa.repository.CharacterRepository
+import com.turtleteam.domain.repository.CharacterRepository
+import com.turtleteam.network.data.api.ApiService
 import com.turtleteam.network.data.paging.CharactersPagingSource
 
-class CharacterRepositoryImpl(private val pagingSource: CharactersPagingSource) :
+class CharacterRepositoryImpl(private val apiService: ApiService) :
     CharacterRepository {
 
-    override fun fetchCharactersList() = Pager(PagingConfig(pageSize = 1, prefetchDistance = 20),
-        pagingSourceFactory = { pagingSource }).flow
+    override fun fetchCharactersList(
+        name: String?,
+        gender: String?,
+        status: String?
+    ) = Pager(PagingConfig(pageSize = 1, prefetchDistance = 20),
+        pagingSourceFactory = { CharactersPagingSource(apiService, name, gender, status) }).flow
 }

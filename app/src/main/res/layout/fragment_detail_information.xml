@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Toolbar
+        android:id="@+id/list_toolbar"
+        android:title="@string/app_name_toolbar"
+        android:titleTextColor="@color/white"
+        android:background="@color/black2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/character_img"
         android:layout_width="match_parent"

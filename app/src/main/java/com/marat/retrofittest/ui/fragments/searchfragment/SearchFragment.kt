@@ -1,4 +1,4 @@
-package com.marat.retrofittest.ui.fragments.listfragment
+package com.marat.retrofittest.ui.fragments.searchfragment
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -7,49 +7,45 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.doOnPreDraw
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.marat.retrofittest.R
-import com.marat.retrofittest.databinding.FragmentCharacterListBinding
+import com.marat.retrofittest.databinding.FragmentSearchBinding
 import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.detailfragment.DetailInformationFragment
+import com.marat.retrofittest.ui.fragments.listfragment.CharacterListFragment
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.CharactersLoadStateAdapter
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.RikAdapter
-import com.marat.retrofittest.ui.fragments.searchfragment.SearchFragment
 import com.turtleteam.domain.model.Result
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
-    RikAdapter.CharacterListListener {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(), RikAdapter.CharacterListListener {
 
-    private val viewModel by viewModel<CharactersListViewModel>()
+    private val viewModel by viewModel<SearchViewModel>()
     private val charactersAdapter = RikAdapter(this)
 
-    companion object {
-        const val ITEM_ARGUMENT = "argument"
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.listToolbar.inflateMenu(R.menu.toolbar_menu)
-        binding.listToolbar.menu.findItem(R.id.search_button_menu).setShowAsActionFlags(1)
-            .setOnMenuItemClickListener {
-                parentFragmentManager.beginTransaction().addToBackStack(null)
-                    .setCustomAnimations(R.animator.to_left_in,
-                        R.animator.to_left_out,
-                        R.animator.to_right_in,
-                        R.animator.to_right_out)
-                    .replace(R.id.fragment_container_view, SearchFragment()).commit()
-                true
-            }
-
         initCharactersList()
 
+
+        binding.searchText.doAfterTextChanged {
+            lifecycleScope.launch {
+                viewModel.name = it.toString()
+                observableData()
+            }
+        }
+    }
+
+    fun observableData() {
         lifecycleScope.launch {
-            viewModel.characterList.collect {
+            viewModel.getData().collectLatest {
                 charactersAdapter.submitData(it)
             }
         }
@@ -65,21 +61,24 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
                 when (it.refresh) {
                     is LoadState.NotLoading -> {
                         binding.progressBar.visibility = View.GONE
+                        binding.stateview.retryView.visibility = View.GONE
                     }
                     is LoadState.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is LoadState.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.stateview.retryView.visibility = View.VISIBLE
-                        binding.stateview.retryBtn.setOnClickListener {
-                            charactersAdapter.retry()
-                            binding.stateview.retryView.visibility = View.INVISIBLE
+                        if(charactersAdapter.itemCount==0) {
+                            binding.stateview.retryView.visibility = View.VISIBLE
+                            binding.stateview.retryBtn.setOnClickListener {
+                                charactersAdapter.retry()
+                                binding.stateview.retryView.visibility = View.INVISIBLE
+                            }
                         }
                     }
                 }
             } else binding.progressBar.visibility = View.GONE
         }
 
-        binding.rcView.apply {
+        binding.searchList.apply {
             layoutManager = mlayoutManager
             adapter = charactersAdapter.withLoadStateFooter(footer)
             postponeEnterTransition()
@@ -119,12 +118,10 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
         parentFragmentManager.beginTransaction().addToBackStack("listfragment")
             .addSharedElement(img, item.id.toString()).add(R.id.fragment_container_view,
                 DetailInformationFragment::class.java,
-                bundleOf(ITEM_ARGUMENT to item)).hide(this).commit()
+                bundleOf(CharacterListFragment.ITEM_ARGUMENT to item)).hide(this).commit()
     }
 
     override fun getViewBinding(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-    ): FragmentCharacterListBinding =
-        FragmentCharacterListBinding.inflate(inflater, container, false)
+        inflater: LayoutInflater, container: ViewGroup?,
+    ): FragmentSearchBinding = FragmentSearchBinding.inflate(inflater, container, false)
 }

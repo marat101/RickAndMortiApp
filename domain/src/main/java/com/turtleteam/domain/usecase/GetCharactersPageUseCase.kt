@@ -1,6 +1,6 @@
 package com.marat.retrofittest.aaaaaaaaaaaaaaa.usecase
 
-import com.marat.retrofittest.aaaaaaaaaaaaaaa.repository.CharacterRepository
+import com.turtleteam.domain.repository.CharacterRepository
 
 class GetCharactersPageUseCase(private val repository: CharacterRepository) {
 
