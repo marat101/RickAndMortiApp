@@ -16,6 +16,7 @@ import com.marat.retrofittest.ui.base.BaseFragment
 import com.marat.retrofittest.ui.fragments.detailfragment.DetailInformationFragment
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.CharactersLoadStateAdapter
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.RikAdapter
+import com.marat.retrofittest.ui.fragments.searchfragment.SearchFragment
 import com.turtleteam.domain.model.Result
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,6 +33,18 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.listToolbar.inflateMenu(R.menu.toolbar_menu)
+        binding.listToolbar.menu.findItem(R.id.search_button_menu).setShowAsActionFlags(1)
+            .setOnMenuItemClickListener {
+                parentFragmentManager.beginTransaction().addToBackStack(null)
+                    .setCustomAnimations(R.animator.to_left_in,
+                        R.animator.to_left_out,
+                        R.animator.to_right_in,
+                        R.animator.to_right_out)
+                    .replace(R.id.fragment_container_view, SearchFragment()).commit()
+                true
+            }
 
         initCharactersList()
 
@@ -56,10 +69,10 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
                     is LoadState.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is LoadState.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.stateview?.retryView?.visibility = View.VISIBLE
-                        binding.stateview?.retryBtn?.setOnClickListener {
+                        binding.stateview.retryView.visibility = View.VISIBLE
+                        binding.stateview.retryBtn.setOnClickListener {
                             charactersAdapter.retry()
-                            binding.stateview?.retryView?.visibility = View.INVISIBLE
+                            binding.stateview.retryView.visibility = View.INVISIBLE
                         }
                     }
                 }
@@ -104,9 +117,9 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
 
     override fun onCharacterClick(item: Result, img: View) {
         parentFragmentManager.beginTransaction().addToBackStack("listfragment")
-            .addSharedElement(img, item.id.toString()).replace(R.id.fragment_container_view,
+            .addSharedElement(img, item.id.toString()).add(R.id.fragment_container_view,
                 DetailInformationFragment::class.java,
-                bundleOf(ITEM_ARGUMENT to item)).commit()
+                bundleOf(ITEM_ARGUMENT to item)).hide(this).commit()
     }
 
     override fun getViewBinding(
