@@ -1,2 +1,0 @@
-# RickAndMortiApp
-Когда нибудь закончу
