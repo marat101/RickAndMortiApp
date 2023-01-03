@@ -5,4 +5,13 @@
     <string name="retry">retry</string>
     <string name="search">Search</string>
     <string name="search_hint">Search…</string>
+    <string name="gender">Gender</string>
+    <string name="select">select</string>
+    <string name="status">Status</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="unknown">Unknown</string>
+    <string name="genderless">Genderless</string>
+    <string name="alive">Alive</string>
+    <string name="dead">Dead</string>
 </resources>

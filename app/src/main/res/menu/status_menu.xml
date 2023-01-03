@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/status_alive"
+        android:title="@string/alive" />
+    <item
+        android:id="@+id/status_dead"
+        android:title="@string/dead" />
+
+    <item
+        android:id="@+id/status_unknown"
+        android:title="@string/unknown" />
+
+</menu>

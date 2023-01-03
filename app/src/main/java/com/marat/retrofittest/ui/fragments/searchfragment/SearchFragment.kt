@@ -1,12 +1,17 @@
 package com.marat.retrofittest.ui.fragments.searchfragment
 
+import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
+import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.view.doOnPreDraw
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -18,6 +23,7 @@ import com.marat.retrofittest.ui.fragments.detailfragment.DetailInformationFragm
 import com.marat.retrofittest.ui.fragments.listfragment.CharacterListFragment
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.CharactersLoadStateAdapter
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.RikAdapter
+import com.marat.retrofittest.view.ViewAnimations
 import com.turtleteam.domain.model.Result
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -31,22 +37,82 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), RikAdapter.Charact
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.genderMenu.text = viewModel.gender
+        binding.statusMenu.text = viewModel.status
 
         initCharactersList()
+        initListeners()
+    }
 
-
-        binding.searchText.doAfterTextChanged {
-            lifecycleScope.launch {
-                viewModel.name = it.toString()
-                observableData()
+    private fun update() {
+        lifecycleScope.launch {
+            viewModel.getData().collectLatest {
+                charactersAdapter.submitData(it)
             }
         }
     }
 
-    fun observableData() {
-        lifecycleScope.launch {
-            viewModel.getData().collectLatest {
-                charactersAdapter.submitData(it)
+    private fun showPopup(view: TextView, menu: Int) {
+        val popup = PopupMenu(this.context, view)
+        popup.inflate(menu)
+        popup.setOnMenuItemClickListener {
+            if (menu == R.menu.gender_menu) {
+                viewModel.gender = it.title.toString()
+                binding.clearGenderFilter.visibility = View.VISIBLE
+            }
+            else {
+                viewModel.status = it.title.toString()
+                binding.clearStatusFilter.visibility = View.VISIBLE
+            }
+            view.text = it.title
+            update()
+            true
+        }
+        popup.show()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initListeners() {
+        binding.apply {
+            if (genderMenu.text != "select") clearGenderFilter.visibility = View.VISIBLE
+            if (statusMenu.text != "select") clearStatusFilter.visibility = View.VISIBLE
+            filterButton.setOnClickListener {
+                if (filterLayout.isInvisible) {
+                    filterButton.setImageResource(R.drawable.ic_up)
+                    ViewAnimations.showFilterView(filterLayout)
+                    genderMenu.setOnClickListener {
+                        showPopup(genderMenu, R.menu.gender_menu)
+                    }
+                    statusMenu.setOnClickListener {
+                        showPopup(statusMenu, R.menu.status_menu)
+                    }
+                } else {
+                    filterButton.setImageResource(R.drawable.ic_filter)
+                    ViewAnimations.hideFilterView(filterLayout)
+                }
+            }
+
+            searchText.doAfterTextChanged {
+                if (filterLayout.isVisible) {
+                    ViewAnimations.hideFilterView(filterLayout)
+                    filterButton.setImageResource(R.drawable.ic_filter)
+                }
+                lifecycleScope.launch {
+                    viewModel.name = it.toString()
+                    update()
+                }
+            }
+            clearGenderFilter.setOnClickListener {
+                viewModel.gender = "select"
+                genderMenu.text = "select"
+                update()
+                it.visibility = View.INVISIBLE
+            }
+            clearStatusFilter.setOnClickListener {
+                viewModel.status = "select"
+                statusMenu.text = "select"
+                update()
+                it.visibility = View.INVISIBLE
             }
         }
     }
@@ -61,16 +127,16 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), RikAdapter.Charact
                 when (it.refresh) {
                     is LoadState.NotLoading -> {
                         binding.progressBar.visibility = View.GONE
-                        binding.stateview.retryView.visibility = View.GONE
+                        binding.retryView.visibility = View.GONE
                     }
                     is LoadState.Loading -> binding.progressBar.visibility = View.VISIBLE
                     is LoadState.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        if(charactersAdapter.itemCount==0) {
-                            binding.stateview.retryView.visibility = View.VISIBLE
-                            binding.stateview.retryBtn.setOnClickListener {
+                        if (charactersAdapter.itemCount == 0) {
+                            binding.retryView.visibility = View.VISIBLE
+                            binding.retryBtn.setOnClickListener {
                                 charactersAdapter.retry()
-                                binding.stateview.retryView.visibility = View.INVISIBLE
+                                binding.retryView.visibility = View.INVISIBLE
                             }
                         }
                     }

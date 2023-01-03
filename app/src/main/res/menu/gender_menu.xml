@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/male_menu_item"
+        android:title="@string/male" />
+    <item
+        android:id="@+id/female_menu_item"
+        android:title="@string/female" />
+
+    <item
+        android:id="@+id/genderless_menu_item"
+        android:title="@string/genderless" />
+
+    <item
+        android:id="@+id/unknown_menu_item"
+        android:title="@string/unknown" />
+</menu>
