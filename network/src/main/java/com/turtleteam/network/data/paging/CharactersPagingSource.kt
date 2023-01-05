@@ -28,7 +28,7 @@ class CharactersPagingSource(
         return try {
             val response = api.getCharacterList(page, name = name, gender = gender, status = status)
 
-            if (response.code()==404) throw HttpException(response)
+            if (response.code() == 404) throw HttpException(response)
 
             val result = response.body()!!.results
             Log.e("response code", response.toString())
@@ -37,7 +37,7 @@ class CharactersPagingSource(
             LoadResult.Page(result, prevKey, nextkey)
         } catch (e: HttpException) {
             if (e.code() == 404) LoadResult.Page(emptyList(), null, null) else LoadResult.Error(e)
-        } catch (e: Exception){
+        } catch (e: Exception) {
             LoadResult.Error(e)
         }
     }

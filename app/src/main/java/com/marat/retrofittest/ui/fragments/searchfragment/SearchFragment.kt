@@ -3,6 +3,7 @@ package com.marat.retrofittest.ui.fragments.searchfragment
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.marat.retrofittest.R
 import com.marat.retrofittest.databinding.FragmentSearchBinding
 import com.marat.retrofittest.ui.base.BaseFragment
+import com.marat.retrofittest.ui.fragments.basefragment.BaseNavigationFragment
 import com.marat.retrofittest.ui.fragments.detailfragment.DetailInformationFragment
 import com.marat.retrofittest.ui.fragments.listfragment.CharacterListFragment
 import com.marat.retrofittest.ui.fragments.listfragment.adapter.CharactersLoadStateAdapter
@@ -59,8 +61,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), RikAdapter.Charact
             if (menu == R.menu.gender_menu) {
                 viewModel.gender = it.title.toString()
                 binding.clearGenderFilter.visibility = View.VISIBLE
-            }
-            else {
+            } else {
                 viewModel.status = it.title.toString()
                 binding.clearStatusFilter.visibility = View.VISIBLE
             }
@@ -181,10 +182,20 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), RikAdapter.Charact
     }
 
     override fun onCharacterClick(item: Result, img: View) {
-        parentFragmentManager.beginTransaction().addToBackStack("listfragment")
-            .addSharedElement(img, item.id.toString()).add(R.id.fragment_container_view,
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.animator.to_left_in,
+                R.animator.to_left_out,
+                R.animator.to_right_in,
+                R.animator.to_right_out
+            ).add(
+                R.id.fragment_container_view,
                 DetailInformationFragment::class.java,
-                bundleOf(CharacterListFragment.ITEM_ARGUMENT to item)).hide(this).commit()
+                bundleOf(CharacterListFragment.ITEM_ARGUMENT to item)
+            )
+            .addToBackStack(this::class.java.name)
+            .hide(parentFragmentManager.findFragmentByTag("base")!!)
+            .commit()
     }
 
     override fun getViewBinding(

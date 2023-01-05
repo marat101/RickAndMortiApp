@@ -23,7 +23,7 @@ class CharactersLoadStateAdapter(private val onRetry: () -> Unit) :
         }
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, loadState: LoadState){}
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, loadState: LoadState) {}
 
     override fun onCreateViewHolder(
         parent: ViewGroup,

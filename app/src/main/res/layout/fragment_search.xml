@@ -9,10 +9,9 @@
     android:orientation="vertical">
 
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/search_list"
+        android:splitMotionEvents="false"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="3dp"
@@ -71,7 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:clickable="true"
-        android:background="@drawable/line"
+        android:background="@drawable/filter_background"
         android:visibility="invisible"
         android:orientation="vertical"
         android:elevation="10dp"
@@ -155,6 +154,7 @@
         android:layout_width="0dp"
         android:layout_height="?actionBarSize"
         android:layout_margin="3dp"
+        android:imeOptions="flagNoExtractUi|actionSearch"
         android:background="@drawable/background_search"
         android:elevation="12dp"
         android:hint="@string/search_hint"

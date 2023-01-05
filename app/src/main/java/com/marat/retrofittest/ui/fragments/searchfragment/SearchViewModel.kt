@@ -4,11 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.turtleteam.domain.usecase.SearchCharactersUseCase
+import com.turtleteam.domain.usecase.network.SearchCharactersUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 
-class SearchViewModel(private val searchUseCase: SearchCharactersUseCase): ViewModel() {
+class SearchViewModel(private val searchUseCase: SearchCharactersUseCase) : ViewModel() {
 
     var name: String = ""
     var gender: String = "select"

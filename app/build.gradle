@@ -51,6 +51,7 @@ dependencies {
 
     implementation project(path: ':domain')
     implementation project(path: ':network')
+    implementation project(path: ':storage')
 
     //Retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
