@@ -14,9 +14,9 @@ object FavoritesWrapper {
             } else {
                 FavoritesResult.Success(value)
             }
-        } catch (e: UnknownHostException){
+        } catch (e: UnknownHostException) {
             FavoritesResult.ConnectionError
-        } catch (e: Throwable){
+        } catch (e: Throwable) {
             FavoritesResult.Error(e)
         }
     }

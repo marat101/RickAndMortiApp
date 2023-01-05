@@ -1,6 +1,6 @@
 package com.turtleteam.domain.model.network
 
-sealed class FavoritesResult<out T>{
+sealed class FavoritesResult<out T> {
 
     data class Success<out T>(val value: T) : FavoritesResult<T>()
 

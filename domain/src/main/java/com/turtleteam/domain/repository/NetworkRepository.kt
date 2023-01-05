@@ -1,13 +1,13 @@
 package com.turtleteam.domain.repository
 
 import androidx.paging.PagingData
-import kotlinx.coroutines.flow.Flow
 import com.turtleteam.domain.model.Result
 import com.turtleteam.domain.model.network.FavoritesResult
+import kotlinx.coroutines.flow.Flow
 
 interface NetworkRepository {
 
-    suspend fun getCharactersByIds(ids:String): FavoritesResult<List<Result>>
+    suspend fun getCharactersByIds(ids: String): FavoritesResult<List<Result>>
 
     fun fetchCharactersList(
         name: String? = null,

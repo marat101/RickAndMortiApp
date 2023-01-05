@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RetrofitTest">
         <activity
-            android:name=".MainActivity"
+            android:name="com.turtleteam.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

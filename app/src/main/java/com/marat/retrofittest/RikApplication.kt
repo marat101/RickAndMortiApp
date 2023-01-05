@@ -1,10 +1,10 @@
 package com.marat.retrofittest
 
 import android.app.Application
-import com.marat.retrofittest.di.appModule
 import com.marat.retrofittest.di.domainModule
 import com.marat.retrofittest.di.networkModule
 import com.marat.retrofittest.di.repositoryModule
+import com.marat.retrofittest.di.uiModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,7 +19,7 @@ class RikApplication : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@RikApplication)
-            modules(listOf(appModule, networkModule, repositoryModule, domainModule))
+            modules(listOf(uiModule, networkModule, repositoryModule, domainModule))
         }
 
     }
