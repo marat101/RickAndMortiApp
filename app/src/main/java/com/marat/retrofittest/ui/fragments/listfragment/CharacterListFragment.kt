@@ -2,6 +2,7 @@ package com.marat.retrofittest.ui.fragments.listfragment
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,16 +34,17 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.listToolbar.inflateMenu(R.menu.toolbar_menu)
-        binding.listToolbar.menu.findItem(R.id.search_button_menu).setShowAsActionFlags(1)
-            .setOnMenuItemClickListener {
-                parentFragmentManager.beginTransaction().addToBackStack(null)
-                    .setCustomAnimations(R.animator.to_left_in,
+        binding.listToolbar.menu.findItem(R.id.search_button_menu).setShowAsActionFlags(1).setOnMenuItemClickListener {
+                parentFragmentManager.beginTransaction().addToBackStack(this::class.java.name)
+                    .setCustomAnimations(
+                        R.animator.to_left_in,
                         R.animator.to_left_out,
                         R.animator.to_right_in,
-                        R.animator.to_right_out)
-                    .replace(R.id.fragment_container_view, SearchFragment()).commit()
+                        R.animator.to_right_out
+                    )
+                    .add(R.id.fragment_container_view, SearchFragment())
+                    .hide(parentFragmentManager.findFragmentByTag("base")!!).commit()
                 true
             }
 
@@ -116,10 +118,20 @@ class CharacterListFragment : BaseFragment<FragmentCharacterListBinding>(),
     }
 
     override fun onCharacterClick(item: Result, img: View) {
-        parentFragmentManager.beginTransaction().addToBackStack("listfragment")
-            .addSharedElement(img, item.id.toString()).add(R.id.fragment_container_view,
+        parentFragmentManager.beginTransaction()
+            .setCustomAnimations(
+                R.animator.to_left_in,
+                R.animator.to_left_out,
+                R.animator.to_right_in,
+                R.animator.to_right_out
+            ).add(
+                R.id.fragment_container_view,
                 DetailInformationFragment::class.java,
-                bundleOf(ITEM_ARGUMENT to item)).hide(this).commit()
+                bundleOf(ITEM_ARGUMENT to item)
+            )
+            .addToBackStack(this::class.java.name)
+            .hide(parentFragmentManager.findFragmentByTag("base")!!)
+            .commit()
     }
 
     override fun getViewBinding(

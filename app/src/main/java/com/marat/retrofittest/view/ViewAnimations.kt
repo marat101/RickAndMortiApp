@@ -66,10 +66,11 @@ object ViewAnimations {
     fun showFilterView(view: View) {
         view.animate()
             .setDuration(150)
-            .setListener(object : AnimatorListener{
+            .setListener(object : AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
                     view.visibility = View.VISIBLE
                 }
+
                 override fun onAnimationEnd(animation: Animator) {
                 }
 
@@ -80,24 +81,27 @@ object ViewAnimations {
                 }
 
             })
-            .translationY(view.height.toFloat()+12F).start()
+            .translationY(view.height.toFloat() + 12F).start()
     }
 
     fun hideFilterView(view: View) {
         view.animate()
             .setDuration(150)
-            .setListener(object : AnimatorListener{
+            .setListener(object : AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
                 }
+
                 override fun onAnimationEnd(animation: Animator) {
                     view.visibility = View.INVISIBLE
                 }
+
                 override fun onAnimationCancel(animation: Animator) {
                 }
+
                 override fun onAnimationRepeat(animation: Animator) {
                 }
             })
-            .translationY(-view.height.toFloat()+12F).start()
+            .translationY(-view.height.toFloat() + 12F).start()
     }
 
     fun showListAnim(view: View) {

@@ -1,9 +1,9 @@
 package com.marat.retrofittest.di
 
+import com.turtleteam.network.data.api.ApiService
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.turtleteam.network.data.api.ApiService
 
 
 val networkModule = module {

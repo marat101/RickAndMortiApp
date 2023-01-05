@@ -10,9 +10,10 @@ import com.marat.retrofittest.databinding.ItemCharacterBinding
 import com.marat.retrofittest.ui.base.Diffutils
 import com.turtleteam.domain.model.Result
 
-class RikAdapter(private var listener: CharacterListListener) : PagingDataAdapter<Result, RikAdapter.RikHolder>(Diffutils()) {
+class RikAdapter(private var listener: CharacterListListener) :
+    PagingDataAdapter<Result, RikAdapter.RikHolder>(Diffutils()) {
 
-    interface CharacterListListener{
+    interface CharacterListListener {
         fun onCharacterClick(item: Result, img: View)
     }
 
@@ -30,7 +31,8 @@ class RikAdapter(private var listener: CharacterListListener) : PagingDataAdapte
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RikHolder {
-        val inflater = ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val inflater =
+            ItemCharacterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return RikHolder(inflater)
     }
 
